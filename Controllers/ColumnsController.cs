@@ -71,7 +71,7 @@ namespace RocketApi.Controllers
                 _context.Entry(mycolumn).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
 
-                return Content("Column: " + mycolumn.Id + ", status as been change to: " + mycolumn.ColumnStatus);
+                return Content("Column: " + mycolumn.Id + ", status has been changed to: " + mycolumn.ColumnStatus);
             }
 
             return Content("Please insert a valid status : Intervention, Inactive, Active, Tray again !  ");

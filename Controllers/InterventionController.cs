@@ -20,13 +20,15 @@ namespace RocketApi.Controllers
             _context = context;
         }
 
+        // GET: Returns all fields of all Service Request records that do not have a start date and are in "Pending" status.
         // GET: api/Intervention
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Interventions>>> GetInterventions()
         {
-            return await _context.Interventions.ToListAsync();
+            return await _context.Interventions.Where(intervention => intervention.StartIntervention == null && intervention.Status == "Pending").ToListAsync();
         }
 
+        // GET: Returns a specific intervention by id
         // GET: api/Intervention/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Interventions>> GetInterventions(long id)
@@ -41,49 +43,38 @@ namespace RocketApi.Controllers
             return interventions;
         }
 
-        // PUT: api/Intervention/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutInterventions(long id, Interventions interventions)
+        // /api/Intervention/1/update
+        [HttpPut("{id}/update")]
+        public async Task<IActionResult> UpdateInterventions([FromRoute] long id, Interventions intervention)
         {
-            if (id != interventions.Id)
+            var update = await _context.Interventions.FindAsync(id);
+            if (update == null || id != intervention.Id)
             {
-                return BadRequest();
+                return Content("Wrong id ! please check and try again");
             }
-
-            _context.Entry(interventions).State = EntityState.Modified;
-
-            try
+            if (intervention.Status == "InProgress")
             {
-                await _context.SaveChangesAsync();
+                update.StartIntervention = DateTime.Now;
+                update.Status = "InProgress";
             }
-            catch (DbUpdateConcurrencyException)
+            else if (intervention.Status == "Completed")
             {
-                if (!InterventionsExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                update.EndIntervention = DateTime.Now;
+                update.Status = "Completed";
             }
-
-            return NoContent();
-        }
-
-        // POST: api/Intervention
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<Interventions>> PostInterventions(Interventions interventions)
-        {
-            _context.Interventions.Add(interventions);
+            else
+            {
+                return Content("Please insert a valid status : InProgress, Completed. Tray again please !  ");
+            }
+            _context.Interventions.Update(update);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetInterventions", new { id = interventions.Id }, interventions);
+            return Content("Intervention: " + intervention.Id + ", status has been changed to: " + intervention.Status);
         }
+
+
+
+
 
         // DELETE: api/Intervention/5
         [HttpDelete("{id}")]
