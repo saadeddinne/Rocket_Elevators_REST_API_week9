@@ -16,7 +16,7 @@ Below are described the REST endpoints available that you can use to connect Roc
 
 ## Link to Postman collection
 
-**[Postman collection](https://www.getpostman.com/collections/2a3b2ac3213c8b56c686)**
+**[Postman collection](https://www.getpostman.com/collections/a5e758697de9317cee05)**
 
 <hr>
 How to add the postman collection
@@ -46,9 +46,7 @@ Change the status of the intervention request to "InProgress" and add a start da
 
 #### How to use:
 
-- in the body of the request change : "status": "InProgress".
-- the ID in the route must much the id in the body
-  EXAMPLE: ID = 3
+- Please keep the body of request none (no need for the body just id and action: inprogress) in the bar adress.
 
 ```ssh
 https://restapisaadeddine.azurewebsites.net/api/Intervention/3/inprogress
@@ -60,9 +58,7 @@ Change the status of the intervention request to "Completed" and add a end date 
 
 #### How to use:
 
-- in the body of the request change : "status": "Completed".
-- the ID in the route must much the id in the body
-  EXAMPLE: ID = 3
+- Please keep the body of request none (no need for the body just id and action: inprogress) in the bar adress.
 
 ```ssh
 https://restapisaadeddine.azurewebsites.net/api/Intervention/3/completed
@@ -70,10 +66,17 @@ https://restapisaadeddine.azurewebsites.net/api/Intervention/3/completed
 
 The intervention endpoints check and handle :
 
-> correspondance between ID in the route and the body and return a message if something wrong
-> return message if no data correspond to the request
-> Test and specify the status (inprogress or completed) in the route and check the the spelling of intervention status to standardize the inputs on the databse
+> ID in the route and return a message if something wrong
+> Return message if no data correspond to the request
+> Check if the previous status is already modified else update the database
+> Test and specify the status (inprogress or completed) in the route and check the previous status in the databse
 > Timestamp are with the local area date and time
+
+<hr>
+## Preview of use:
+<hr>
+
+![](usepreview.gif)
 
 ## Battery
 
