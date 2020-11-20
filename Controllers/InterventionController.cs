@@ -25,7 +25,12 @@ namespace RocketApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Interventions>>> GetInterventions()
         {
-            return await _context.Interventions.Where(intervention => intervention.StartIntervention == null && intervention.Status == "Pending").ToListAsync();
+            var list = await _context.Interventions.Where(intervention => intervention.StartIntervention == null && intervention.Status == "Pending").ToListAsync();
+            if (list is null)
+            {
+                return list;
+            }
+            else return Content("No records that do not have a start date and are in Pending status.");
         }
 
         // GET: Returns a specific intervention by id
@@ -37,7 +42,7 @@ namespace RocketApi.Controllers
 
             if (interventions == null)
             {
-                return NotFound();
+                return Content("No data or Wrong id ! please check and try again");
             }
 
             return interventions;
