@@ -103,7 +103,11 @@ namespace RocketApi.Controllers
                 {
                     return Content("The actual status of the intervention is already Completed ! End date:  " + update.EndIntervention);
                 }
-                else if (update.Status == "InProgress" || update.Status == "Pending")
+                if (update.Status == "Pending")
+                {
+                    return Content("The actual intervention is not started yet: Pending ! please try inprogress to start the intervention");
+                }
+                else if (update.Status == "InProgress")
                 {
                     // update date and status
                     update.EndIntervention = DateTime.Now;
