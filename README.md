@@ -16,9 +16,13 @@ Below are described the REST endpoints available that you can use to connect Roc
 
 ## Link to Postman collection
 
-![](PostmanCollection.gif)
-
 **[Postman collection](https://www.getpostman.com/collections/2a3b2ac3213c8b56c686)**
+
+<hr>
+How to add the postman collection
+<hr>
+
+![](PostmanCollection.gif)
 
 ## Interventions Endpoints
 
