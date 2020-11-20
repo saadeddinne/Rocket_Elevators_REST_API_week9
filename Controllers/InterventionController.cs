@@ -74,7 +74,7 @@ namespace RocketApi.Controllers
                 else if (update.Status == "Pending")
                 {
                     // update date and status
-                    update.StartIntervention = DateTime.Now;
+                    update.StartIntervention = DateTime.UtcNow;
                     update.Status = "InProgress";
                 }
 
@@ -110,7 +110,7 @@ namespace RocketApi.Controllers
                 else if (update.Status == "InProgress")
                 {
                     // update date and status
-                    update.EndIntervention = DateTime.Now;
+                    update.EndIntervention = DateTime.UtcNow;
                     update.Status = "Completed";
                 }
 
