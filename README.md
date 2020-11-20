@@ -1,14 +1,12 @@
-<h1 align="center"> Rocket Elevators REST API </h1>
+<div class= "bg-gray"></div><h1 align="center"> Rocket Elevators REST API </h1>
 
 REST API using C # and .NET Core allow requesting Rocket Elevators systems to access and manipulate textual representations of web resources through a set of stateless, predefined uniform operations.
 
-## Members of the team
-
-- **[Alexandre Leblanc](https://github.com/CptnWookie)**
-
-- **[Frimina Zaddi](https://github.com/frimina)**
-
-- **[Rafaela_Schwarz](https://github.com/rafa-3111)**
+The API from week 8 is enhanced to offer data through new interaction points:
+GET: Returns all fields of all Service Request records that do not have a start date and are in "Pending" status.
+GET: Returns a specific intervention identified by id.
+PUT: Change the status of the intervention request to "InProgress" and add a start date and time (Timestamp).
+PUT: Change the status of the request for action to "Completed" and add an end date and time (Timestamp).
 
 - **[Saad eddine](https://github.com/saadeddinne)**
 
@@ -18,38 +16,89 @@ Below are described the REST endpoints available that you can use to connect Roc
 
 ## Link to Postman collection
 
-**[Postman collection](https://www.getpostman.com/collections/e57cf0ec133b2d6e844e)**
+**[Postman collection](https://www.getpostman.com/collections/191fb7fc06e1b12243cd)**
+
+## Interventions Endpoints
+
+### GET : All intervention: records that do not have a start date and are in "Pending" status.
+
+```ssh
+https://restapisaadeddine.azurewebsites.net/api/Intervention
+```
+
+### GET: a specific intervention by ID
+
+EXAMPLE: ID = 3
+
+```ssh
+https://restapisaadeddine.azurewebsites.net/api/Intervention/3
+```
+
+### PUT: "InProgress".
+
+Change the status of the intervention request to "InProgress" and add a start date and time (Timestamp).</br>
+
+#### How to use:
+
+- in the body of the request change : "status": "InProgress".
+- the ID in the route must much the id in the body
+  EXAMPLE: ID = 3
+
+```ssh
+https://restapisaadeddine.azurewebsites.net/api/Intervention/3/inprogress
+```
+
+### PUT: "Completed".
+
+Change the status of the intervention request to "Completed" and add a end date and time (Timestamp).</br>
+
+#### How to use:
+
+- in the body of the request change : "status": "Completed".
+- the ID in the route must much the id in the body
+  EXAMPLE: ID = 3
+
+```ssh
+https://restapisaadeddine.azurewebsites.net/api/Intervention/3/completed
+```
+
+The intervention endpoints check and handle :
+
+> correspondance between ID in the route and the body and return a message if something wrong
+> return message if no data correspond to the request
+> Test and specify the status (inprogress or completed) in the route and check the the spelling of intervention status to standardize the inputs on the databse
+> Timestamp are with the local area date and time
 
 ## Battery
 
 ### All
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Batteries
+https://restapisaadeddine.azurewebsites.net/api/Batteries
 ```
 
 ### Retrieving a specific Battery: Search by id.
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Batteries/{id}
+https://restapisaadeddine.azurewebsites.net/api/Batteries/{id}
 ```
 
 ### Retrieving the current status of a specific Battery
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Batteries/{id}/status
+https://restapisaadeddine.azurewebsites.net/api/Batteries/{id}/status
 ```
 
 ### Changing the status of a specific Battery (PUT request)
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Batteries/{id}/status
+https://restapisaadeddine.azurewebsites.net/api/Batteries/{id}/status
 ```
 
 ### Delete a specific Battery (Delete request)
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Batteries/{id}
+https://restapisaadeddine.azurewebsites.net/api/Batteries/{id}
 ```
 
 <hr>
@@ -59,31 +108,31 @@ https://rocketelevatorsrest-api.azurewebsites.net/api/Batteries/{id}
 ### All
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Columns/
+https://restapisaadeddine.azurewebsites.net/api/Columns/
 ```
 
 ### Retrieving a specific Column: Search by id.
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Columns/{id}
+https://restapisaadeddine.azurewebsites.net/api/Columns/{id}
 ```
 
 ### Retrieving the current status of a specific Column
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Columns/{id}/status
+https://restapisaadeddine.azurewebsites.net/api/Columns/{id}/status
 ```
 
 ### Changing the status of a specific Column (PUT request)
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Columns/{id}/status
+https://restapisaadeddine.azurewebsites.net/api/Columns/{id}/status
 ```
 
 ### Delete a specific Battery (Delete request)
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Columns/{id}
+https://restapisaadeddine.azurewebsites.net/api/Columns/{id}
 ```
 
 <hr>
@@ -93,37 +142,37 @@ https://rocketelevatorsrest-api.azurewebsites.net/api/Columns/{id}
 ### All
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Elevators/
+https://restapisaadeddine.azurewebsites.net/api/Elevators/
 ```
 
 ### Retrieving a specific Elevator: Search by id.
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Elevators/{id}
+https://restapisaadeddine.azurewebsites.net/api/Elevators/{id}
 ```
 
 ### Retrieving the current status of a specific Elevator
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Elevators/{id}/status
+https://restapisaadeddine.azurewebsites.net/api/Elevators/{id}/status
 ```
 
 ### Changing the status of a specific Elevator (PUT request)
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Elevators/{id}/status
+https://restapisaadeddine.azurewebsites.net/api/Elevators/{id}/status
 ```
 
 ### Retrieving a list of Elevators that are not in operation at the time of the request
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/ElevatorsOff
+https://restapisaadeddine.azurewebsites.net/api/ElevatorsOff
 ```
 
 ### Delete a specific Elevator (Delete request)
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Elevators/{id}
+https://restapisaadeddine.azurewebsites.net/api/Elevators/{id}
 ```
 
 <hr>
@@ -133,7 +182,7 @@ https://rocketelevatorsrest-api.azurewebsites.net/api/Elevators/{id}
 ### Retrieving a list of Buildings that contain at least one battery, column or elevator requiring intervention
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/BuildingsOff
+https://restapisaadeddine.azurewebsites.net/api/BuildingsOff
 ```
 
 <hr>
@@ -143,7 +192,7 @@ https://rocketelevatorsrest-api.azurewebsites.net/api/BuildingsOff
 ### Retrieving a list of Leads created in the last 30 days who have not yet become customers.
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/NotCostumers
+https://restapisaadeddine.azurewebsites.net/api/NotCostumers
 ```
 
 <hr>
@@ -151,7 +200,7 @@ https://rocketelevatorsrest-api.azurewebsites.net/api/NotCostumers
 ## Response Example
 
 ```html
-https://rocketelevatorsrest-api.azurewebsites.net/api/Elevators/3
+https://restapisaadeddine.azurewebsites.net/api/Elevators/3
 ```
 
 ```json
@@ -174,11 +223,11 @@ https://rocketelevatorsrest-api.azurewebsites.net/api/Elevators/3
 ]
 ```
 
-## :memo: License
+## License
 
-- This project is under license from CodeBoxx.
+- This project is under license from CodeBoxx.</div>
 
-Made with ❤️ in Quebec
+<h6 align="center">Made with ❤️ in Quebec By Saad eddine</h6>
 
 &#xa0;
 
