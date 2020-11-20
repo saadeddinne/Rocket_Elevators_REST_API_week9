@@ -74,53 +74,53 @@ namespace RocketApi.Controllers
 
 
 
-        [HttpPut("{id}/inprogress")]
-        public async Task<IActionResult> InProgressInterventions([FromRoute] long id, Interventions intervention)
-        {
-            var update = await _context.Interventions.FindAsync(id);
-            if (update == null || id != intervention.Id)
-            {
-                return Content("Wrong id ! please check and try again");
-            }
-            if (intervention.Status == "InProgress")
-            {
-                update.StartIntervention = DateTime.Now;
-                update.Status = "InProgress";
-            }
-
-            else
-            {
-                return Content("Please insert a valid status : InProgress. Tray again please !  ");
-            }
-            _context.Interventions.Update(update);
-            await _context.SaveChangesAsync();
-
-            return Content("Intervention: " + intervention.Id + ", status has been changed to: " + intervention.Status);
-        }
-        // /api/Intervention/1/completed
-        // [HttpPut("{id}/completed")]
-        // public async Task<IActionResult> CompletedInterventions([FromRoute] long id, Interventions intervention)
+        // [HttpPut("{id}/inprogress")]
+        // public async Task<IActionResult> InProgressInterventions([FromRoute] long id, Interventions intervention)
         // {
         //     var update = await _context.Interventions.FindAsync(id);
         //     if (update == null || id != intervention.Id)
         //     {
         //         return Content("Wrong id ! please check and try again");
         //     }
-        //     if (intervention.Status == "Completed")
+        //     if (intervention.Status == "InProgress")
         //     {
-        //         update.EndIntervention = DateTime.Now;
-        //         update.Status = "Completed";
+        //         update.StartIntervention = DateTime.Now;
+        //         update.Status = "InProgress";
         //     }
 
         //     else
         //     {
-        //         return Content("Please insert a valid status : Completed. Tray again please !  ");
+        //         return Content("Please insert a valid status : InProgress. Tray again please !  ");
         //     }
         //     _context.Interventions.Update(update);
         //     await _context.SaveChangesAsync();
 
         //     return Content("Intervention: " + intervention.Id + ", status has been changed to: " + intervention.Status);
         // }
+        // /api/Intervention/1/completed
+        [HttpPut("{id}/completed")]
+        public async Task<IActionResult> CompletedInterventions([FromRoute] long id, Interventions intervention)
+        {
+            var update = await _context.Interventions.FindAsync(id);
+            if (update == null || id != intervention.Id)
+            {
+                return Content("Wrong id ! please check and try again");
+            }
+            if (intervention.Status == "Completed")
+            {
+                update.EndIntervention = DateTime.Now;
+                update.Status = "Completed";
+            }
+
+            else
+            {
+                return Content("Please insert a valid status : Completed. Tray again please !  ");
+            }
+            _context.Interventions.Update(update);
+            await _context.SaveChangesAsync();
+
+            return Content("Intervention: " + intervention.Id + ", status has been changed to: " + intervention.Status);
+        }
 
 
 
