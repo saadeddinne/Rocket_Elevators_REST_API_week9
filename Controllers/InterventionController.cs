@@ -51,16 +51,18 @@ namespace RocketApi.Controllers
         [HttpPut("{id}/{status}")]
         public async Task<IActionResult> CompletedInterventions([FromRoute] long id, [FromRoute] string status)
         {
+            // lets get our intervention before update
+            var update = await _context.Interventions.FindAsync(id);
             // verify the status from the route and handle the response
             if (status == "inprogress")
             {
-                var update = await _context.Interventions.FindAsync(id);
+
                 // verify if the id in the route is the same in the Body
                 if (update == null)
                 {
                     return Content("Wrong id or records dosen't exist ! please check and try again");
                 }
-                // verify the spelling 
+                // verify the status if is already modified 
                 if (update.Status == "InProgress")
                 {
                     return Content("The actual status of the intervention is already InProgress ! ");
@@ -89,10 +91,39 @@ namespace RocketApi.Controllers
             }
             // 2 case completed
 
+            else if (status == "completed")
+            {
+                // verify if the id in the route is the same in the Body
+                if (update == null)
+                {
+                    return Content("Wrong id or records dosen't exist ! please check and try again");
+                }
+                // verify the status if is already modified 
+                if (update.Status == "Completed")
+                {
+                    return Content("The actual status of the intervention is already Completed ! End date:  " + update.EndIntervention);
+                }
+                else if (update.Status == "InProgress")
+                {
+                    // update date and status
+                    update.StartIntervention = DateTime.Now;
+                    update.Status = "Completed";
+                }
 
+                else
+                {
+                    // send message to help the user
+                    return Content("Please insert a valid status the request adress : completed and Tray again please !  ");
+                }
+                // update and save
+                _context.Interventions.Update(update);
+                await _context.SaveChangesAsync();
+                // confirmation message
+                return Content("Intervention: " + update.Id + ", status has been changed to: " + update.Status);
+            }
 
             // help the user to specify the endpoints
-            else return Content("hem hem .. something wrong! please use this route format: [api/Intervention/{id}/inprogress] or  [api/Intervention/{id}/completed] and change the status in the body of the request");
+            else return Content("hem hem .. something wrong! please use this route format: [api/Intervention/{id}/inprogress] or  [api/Intervention/{id}/completed]");
 
 
         }
