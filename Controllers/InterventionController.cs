@@ -97,7 +97,7 @@ namespace RocketApi.Controllers
 
             return Content("Intervention: " + intervention.Id + ", status has been changed to: " + intervention.Status);
         }
-        // // /api/Intervention/1/completed
+        // /api/Intervention/1/completed
         // [HttpPut("{id}/completed")]
         // public async Task<IActionResult> CompletedInterventions([FromRoute] long id, Interventions intervention)
         // {
