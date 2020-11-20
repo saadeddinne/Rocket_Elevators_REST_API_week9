@@ -106,7 +106,7 @@ namespace RocketApi.Controllers
                 else if (update.Status == "InProgress")
                 {
                     // update date and status
-                    update.StartIntervention = DateTime.Now;
+                    update.EndIntervention = DateTime.Now;
                     update.Status = "Completed";
                 }
 
