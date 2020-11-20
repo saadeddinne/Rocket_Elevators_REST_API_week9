@@ -58,10 +58,18 @@ namespace RocketApi.Controllers
                 // verify if the id in the route is the same in the Body
                 if (update == null)
                 {
-                    return Content("Wrong id ! please check and try again");
+                    return Content("Wrong id or records dosen't exist ! please check and try again");
                 }
                 // verify the spelling 
-                if (status == "inprogress")
+                if (update.Status == "InProgress")
+                {
+                    return Content("The actual status of the intervention is already InProgress ! ");
+                }
+                else if (update.Status == "Completed")
+                {
+                    return Content("The actual status of the intervention is Completed ! End date:  " + update.EndIntervention);
+                }
+                else if (update.Status == "Pending")
                 {
                     // update date and status
                     update.StartIntervention = DateTime.Now;
@@ -71,7 +79,7 @@ namespace RocketApi.Controllers
                 else
                 {
                     // send message to help the user
-                    return Content("Please insert a valid status : InProgress. Tray again please !  ");
+                    return Content("Please insert a valid status the request adress : inprogress and Tray again please !  ");
                 }
                 // update and save
                 _context.Interventions.Update(update);
