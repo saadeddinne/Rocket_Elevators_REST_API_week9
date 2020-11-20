@@ -99,27 +99,35 @@ namespace RocketApi.Controllers
         }
         // /api/Intervention/1/completed
         [HttpPut("{id}/completed")]
-        public async Task<IActionResult> CompletedInterventions([FromRoute] long id, Interventions intervention)
+        public async Task<IActionResult> CompletedInterventions([FromRoute] long id, [FromRoute] string status, Interventions intervention)
         {
-            var update = await _context.Interventions.FindAsync(id);
-            if (update == null || id != intervention.Id)
+            if (status == "completed")
             {
-                return Content("Wrong id ! please check and try again");
-            }
-            if (intervention.Status == "Completed")
-            {
-                update.EndIntervention = DateTime.Now;
-                update.Status = "Completed";
-            }
 
-            else
-            {
-                return Content("Please insert a valid status : Completed. Tray again please !  ");
-            }
-            _context.Interventions.Update(update);
-            await _context.SaveChangesAsync();
+                var update = await _context.Interventions.FindAsync(id);
+                if (update == null || id != intervention.Id)
+                {
+                    return Content("Wrong id ! please check and try again");
+                }
+                if (intervention.Status == "Completed")
+                {
+                    update.EndIntervention = DateTime.Now;
+                    update.Status = "Completed";
+                }
 
-            return Content("Intervention: " + intervention.Id + ", status has been changed to: " + intervention.Status);
+                else
+                {
+                    return Content("Please insert a valid status : Completed. Tray again please !  ");
+                }
+                _context.Interventions.Update(update);
+                await _context.SaveChangesAsync();
+
+                return Content("Intervention: " + intervention.Id + ", status has been changed to: " + intervention.Status);
+
+            }
+            else return Content("status is wrong");
+
+
         }
 
 
