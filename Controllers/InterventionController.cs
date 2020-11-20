@@ -65,11 +65,11 @@ namespace RocketApi.Controllers
                 // verify the status if is already modified 
                 if (update.Status == "InProgress")
                 {
-                    return Content("The actual status of the intervention is already InProgress ! ");
+                    return Content("The actual status of the intervention is already InProgress since :" + update.StartIntervention + "! ");
                 }
                 else if (update.Status == "Completed")
                 {
-                    return Content("The actual status of the intervention is Completed ! End date:  " + update.EndIntervention);
+                    return Content("The actual status of the intervention is Completed ! End date (UTC):  " + update.EndIntervention);
                 }
                 else if (update.Status == "Pending")
                 {
