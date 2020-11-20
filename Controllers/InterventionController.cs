@@ -43,72 +43,51 @@ namespace RocketApi.Controllers
             return interventions;
         }
 
-        // /api/Intervention/1/update
-        // [HttpPut("{id}/update")]
-        // public async Task<IActionResult> UpdateInterventions([FromRoute] long id, Interventions intervention)
-        // {
-        //     var update = await _context.Interventions.FindAsync(id);
-        //     if (update == null || id != intervention.Id)
-        //     {
-        //         return Content("Wrong id ! please check and try again");
-        //     }
-        //     if (intervention.Status == "InProgress")
-        //     {
-        //         update.StartIntervention = DateTime.Now;
-        //         update.Status = "InProgress";
-        //     }
-        //     else if (intervention.Status == "Completed")
-        //     {
-        //         update.EndIntervention = DateTime.Now;
-        //         update.Status = "Completed";
-        //     }
-        //     else
-        //     {
-        //         return Content("Please insert a valid status : InProgress, Completed. Tray again please !  ");
-        //     }
-        //     _context.Interventions.Update(update);
-        //     await _context.SaveChangesAsync();
-
-        //     return Content("Intervention: " + intervention.Id + ", status has been changed to: " + intervention.Status);
-        // }
-
-
-
-        // [HttpPut("{id}/inprogress")]
-        // public async Task<IActionResult> InProgressInterventions([FromRoute] long id, Interventions intervention)
-        // {
-        // var update = await _context.Interventions.FindAsync(id);
-        // if (update == null || id != intervention.Id)
-        // {
-        //     return Content("Wrong id ! please check and try again");
-        // }
-        // if (intervention.Status == "InProgress")
-        // {
-        //     update.StartIntervention = DateTime.Now;
-        //     update.Status = "InProgress";
-        // }
-
-        // else
-        // {
-        //     return Content("Please insert a valid status : InProgress. Tray again please !  ");
-        // }
-        // _context.Interventions.Update(update);
-        // await _context.SaveChangesAsync();
-
-        // return Content("Intervention: " + intervention.Id + ", status has been changed to: " + intervention.Status);
-        // }
+        // the same method handle 2 endpoint :
+        //** /api/Intervention/1/inprogress and
+        //** /api/Intervention/1/completed
         // /api/Intervention/1/completed
         [HttpPut("{id}/{status}")]
         public async Task<IActionResult> CompletedInterventions([FromRoute] long id, [FromRoute] string status, Interventions intervention)
         {
-            if (status == "completed")
+            // verify the status from the route and handle the response
+            if (status == "inprogress")
             {
+                var update = await _context.Interventions.FindAsync(id);
+                // verify if the id in the route is the same in the Body
+                if (update == null || id != intervention.Id)
+                {
+                    return Content("Wrong id ! please check and try again");
+                }
+                // verify the spelling 
+                if (intervention.Status == "InProgress")
+                {
+                    // update date and status
+                    update.StartIntervention = DateTime.Now;
+                    update.Status = "InProgress";
+                }
 
+                else
+                {
+                    // send message to help the user
+                    return Content("Please insert a valid status : InProgress. Tray again please !  ");
+                }
+                // update and save
+                _context.Interventions.Update(update);
+                await _context.SaveChangesAsync();
+                // confirmation message
+                return Content("Intervention: " + intervention.Id + ", status has been changed to: " + intervention.Status);
+            }
+            // 2 case completed
+            else if (status == "completed")
+            {
+                // check the id
                 var update = await _context.Interventions.FindAsync(id);
                 if (update == null || id != intervention.Id)
                 {
                     return Content("Wrong id ! please check and try again");
                 }
+                // check the sppelling to prevent and standardize data
                 if (intervention.Status == "Completed")
                 {
                     update.EndIntervention = DateTime.Now;
@@ -117,37 +96,19 @@ namespace RocketApi.Controllers
 
                 else
                 {
+                    // help the user to understand whats wrong !
                     return Content("Please insert a valid status : Completed. Tray again please !  ");
                 }
+                // update and save
                 _context.Interventions.Update(update);
                 await _context.SaveChangesAsync();
 
                 return Content("Intervention: " + intervention.Id + ", status has been changed to: " + intervention.Status);
 
             }
-            else if (status == "inprogress")
-            {
-                var update = await _context.Interventions.FindAsync(id);
-                if (update == null || id != intervention.Id)
-                {
-                    return Content("Wrong id ! please check and try again");
-                }
-                if (intervention.Status == "InProgress")
-                {
-                    update.StartIntervention = DateTime.Now;
-                    update.Status = "InProgress";
-                }
 
-                else
-                {
-                    return Content("Please insert a valid status : InProgress. Tray again please !  ");
-                }
-                _context.Interventions.Update(update);
-                await _context.SaveChangesAsync();
-
-                return Content("Intervention: " + intervention.Id + ", status has been changed to: " + intervention.Status);
-            }
-            else return Content("status is wrong");
+            // help the user to specify the endpoints
+            else return Content("hem hem .. something wrong! please use this route format: [api/Intervention/{id}/inprogress] or  [api/Intervention/{id}/completed] and change the status in the body of the request");
 
 
         }
