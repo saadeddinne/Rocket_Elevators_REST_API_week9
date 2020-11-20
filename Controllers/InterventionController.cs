@@ -61,7 +61,7 @@ namespace RocketApi.Controllers
                     return Content("Wrong id ! please check and try again");
                 }
                 // verify the spelling 
-                if (status == "InProgress")
+                if (status == "inprogress")
                 {
                     // update date and status
                     update.StartIntervention = DateTime.Now;
