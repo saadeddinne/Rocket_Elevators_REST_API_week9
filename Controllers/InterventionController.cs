@@ -125,6 +125,10 @@ namespace RocketApi.Controllers
                 return Content("Intervention: " + intervention.Id + ", status has been changed to: " + intervention.Status);
 
             }
+            else if (status == "inprogress")
+            {
+                return Content("hello in progress");
+            }
             else return Content("status is wrong");
 
 
