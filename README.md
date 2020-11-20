@@ -1,4 +1,4 @@
-<div class= "bg-gray"></div><h1 align="center"> Rocket Elevators REST API </h1>
+<div class= "bg-gray"><h1 align="center"> Rocket Elevators REST API </h1>
 
 REST API using C # and .NET Core allow requesting Rocket Elevators systems to access and manipulate textual representations of web resources through a set of stateless, predefined uniform operations.
 
@@ -225,10 +225,12 @@ https://restapisaadeddine.azurewebsites.net/api/Elevators/3
 
 ## License
 
-- This project is under license from CodeBoxx.</div>
+- This project is under license from CodeBoxx.
 
 <h6 align="center">Made with ❤️ in Quebec By Saad eddine</h6>
 
 &#xa0;
 
 <a href="#top">Back to top</a>
+
+</div>
