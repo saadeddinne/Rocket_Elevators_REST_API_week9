@@ -8,7 +8,7 @@ GET: Returns a specific intervention identified by id.
 PUT: Change the status of the intervention request to "InProgress" and add a start date and time (Timestamp).
 PUT: Change the status of the request for action to "Completed" and add an end date and time (Timestamp).
 
-- **[Saad eddine](https://github.com/saadeddinne)**
+> **[Saad eddine](https://github.com/saadeddinne)**
 
 # API Endpoints
 
