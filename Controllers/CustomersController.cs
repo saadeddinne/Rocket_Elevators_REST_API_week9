@@ -47,14 +47,16 @@ namespace RocketApi.Controllers
 
         // GET: api/Customers/
         [HttpGet("{email}")]
-        public async Task<ActionResult<IEnumerable<Customers>>> GetCustomersAuth([FromRoute] string email)
+        public IEnumerable<Customers> GetCustomersAuth([FromRoute] string email)
         {
 
 
             Console.Write("-------------------------------------" + email);
 
-            var c = await _context.Customers.Where(s => s.CompanyContactEmail == email).ToListAsync();
-            return c;
+            // var c = await _context.Customers.Where(s => s.CompanyContactEmail == email).ToListAsync();
+            IEnumerable<Customers> cost = _context.Customers.Where(c => c.CompanyContactEmail.Equals(email));
+
+            return cost;
 
         }
 
