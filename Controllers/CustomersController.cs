@@ -27,21 +27,21 @@ namespace RocketApi.Controllers
             return await _context.Customers.ToListAsync();
         }
 
-        // GET: api/Customers/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Customers>> GetCustomers(long id)
-        {
-            var customers = await _context.Customers.FindAsync(id);
+        // // GET: api/Customers/5
+        // [HttpGet("{id}")]
+        // public async Task<ActionResult<Customers>> GetCustomers(long id)
+        // {
+        //     var customers = await _context.Customers.FindAsync(id);
 
-            if (customers == null)
-            {
-                return NotFound();
-            }
+        //     if (customers == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            return customers;
-        }
+        //     return customers;
+        // }
 
-        // GET: api/Customers/5
+        // GET: api/Customers/
         [HttpGet("{email}")]
         public async Task<ActionResult<Customers>> GetCustomersAuth([FromRoute] string email)
         {
