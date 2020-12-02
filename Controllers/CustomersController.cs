@@ -42,7 +42,7 @@ namespace RocketApi.Controllers
         }
 
         // GET: api/Customers/5
-        [HttpGet("{id}")]
+        [HttpGet("{email}")]
         public async Task<ActionResult<Customers>> GetCustomersAuth([FromRoute] string email)
         {
             var customers = await _context.Customers.FindAsync(email);
