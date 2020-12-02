@@ -20,6 +20,10 @@ namespace RocketApi.Controllers
             _context = context;
         }
 
+        public IQueryable<Customers> GetAllCustomers()
+        {
+            return _context.Customers.AsQueryable();
+        }
         // GET: api/Customers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Customers>>> GetCustomers()
@@ -43,16 +47,15 @@ namespace RocketApi.Controllers
 
         // GET: api/Customers/
         [HttpGet("{email}")]
-        public async Task<ActionResult<Customers>> GetCustomersAuth([FromRoute] string email)
+        public async Task<ActionResult<IEnumerable<Customers>>> GetCustomersAuth([FromRoute] string email)
         {
-            var customers = await _context.Customers.FindAsync(email);
 
-            if (customers == null)
-            {
-                return NotFound();
-            }
 
-            return customers;
+            Console.Write("-------------------------------------" + email);
+
+            var c = await _context.Customers.Where(s => s.CompanyContactEmail == email).ToListAsync();
+            return c;
+
         }
 
         // PUT: api/Customers/5
