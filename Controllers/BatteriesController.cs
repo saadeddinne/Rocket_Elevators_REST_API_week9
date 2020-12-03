@@ -59,6 +59,30 @@ namespace RocketApi.Controllers
 
         }
 
+        // Get Batteries for specific Customers
+
+        [HttpGet("{email}")]
+        public IEnumerable<Batteries> GetCustomersAuth([FromRoute] string email)
+        {
+
+
+            var cost = _context.Customers.Where(c => c.CompanyContactEmail.Equals(email));
+            var costume = cost.FirstOrDefault();
+            long costx = costume.Id;
+
+            IEnumerable<Batteries> Bbatteries = from batteries in _context.Batteries
+                                                join buildings in _context.Buildings on batteries.Id equals buildings.Id
+                                                join costumer in _context.Customers on buildings.Id equals
+                                                costumer.Id
+                                                where costumer.Id == costx
+                                                select batteries;
+
+
+
+            return Bbatteries.Distinct().ToList();
+
+        }
+
         //  2. Changing the status of a specific Battery  
 
         [HttpPut("{id}/Status/")]
@@ -99,6 +123,8 @@ namespace RocketApi.Controllers
 
             return batteries;
         }
+
+
 
 
 
