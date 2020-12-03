@@ -61,7 +61,7 @@ namespace RocketApi.Controllers
 
         // Get Batteries for specific Customers
 
-        [HttpGet("{email}")]
+        [HttpGet("{getbattery}")]
         public IEnumerable<Batteries> GetCustomersAuth([FromRoute] string email)
         {
 
