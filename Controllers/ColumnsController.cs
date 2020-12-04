@@ -56,7 +56,7 @@ namespace RocketApi.Controllers
 
         }
 
-        // Get Batteries for specific Customers
+        // Get columns for specific Customers
 
         [HttpGet("{email}/column")]
         public IEnumerable<Columns> ColumnCostumer([FromRoute] string email)

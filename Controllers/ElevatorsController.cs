@@ -41,6 +41,28 @@ namespace RocketApi.Controllers
 
             return elevators;
         }
+        // Get columns for specific Customers
+
+        [HttpGet("{email}/elevator")]
+        public IEnumerable<Elevators> ElevatorsCostumer([FromRoute] string email)
+        {
+
+
+            var cost = _context.Customers.Where(c => c.CompanyContactEmail.Equals(email));
+            Customers costume = cost.FirstOrDefault();
+            // var costx = costume.Id;
+
+            IEnumerable<Elevators> Elevators = (from elevator in _context.Elevators
+                                                join buildings in _context.Buildings on elevator.Id equals buildings.Id
+                                                join costumer in _context.Customers on buildings.Id equals
+                                                costumer.Id
+                                                select elevator).Take(4);
+
+
+
+            return Elevators.Distinct().ToList();
+
+        }
 
         // Retrieving the current status of a specific Elevator
         // GET: api/Elevators/{id}/status
