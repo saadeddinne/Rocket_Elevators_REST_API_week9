@@ -52,15 +52,23 @@ namespace RocketApi.Controllers
             Customers costume = cost.FirstOrDefault();
             // var costx = costume.Id;
 
-            IEnumerable<Elevators> Elevators = (from elevator in _context.Elevators
-                                                join buildings in _context.Buildings on elevator.Id equals buildings.Id
-                                                join costumer in _context.Customers on buildings.Id equals
-                                                costumer.Id
-                                                select elevator).Take(2);
+            IEnumerable<Elevators> eleva =
+              (from elevator in _context.Elevators
+               join col in _context.Columns on elevator.ColumnId equals col.Id
+               where
+               elevator.ElevatorStatus == "ACTIVE"
+               orderby elevator.DateOfCommissioning
+               select elevator).Take(3);
+            return eleva.Distinct().ToList();
 
 
 
-            return Elevators.Distinct().ToList();
+
+
+
+
+
+
 
         }
 

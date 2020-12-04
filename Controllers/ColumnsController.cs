@@ -65,17 +65,17 @@ namespace RocketApi.Controllers
 
             var cost = _context.Customers.Where(c => c.CompanyContactEmail.Equals(email));
             Customers costume = cost.FirstOrDefault();
-            // var costx = costume.Id;
-
-            IEnumerable<Columns> columns = (from column in _context.Columns
-                                            join buildings in _context.Buildings on column.Id equals buildings.Id
-                                            join costumer in _context.Customers on buildings.Id equals
-                                            costumer.Id
-                                            select column).Take(3);
+            // var costx = costume.Id;       
 
 
-
-            return columns.Distinct().ToList();
+            IEnumerable<Columns> Col =
+            (from col in _context.Columns
+             join batteries in _context.Batteries on col.BatteryId equals batteries.Id
+             where
+             col.ColumnStatus == "ACTIVE"
+             orderby batteries.CreatedAt
+             select col).Take(3);
+            return Col.Distinct().ToList();
 
         }
 

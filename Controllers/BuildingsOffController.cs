@@ -56,11 +56,13 @@ namespace RocketApi.Controllers
             Customers costume = cost.FirstOrDefault();
             // var costx = costume.Id;
 
-            IEnumerable<Buildings> Buildings = (from buildings in _context.Buildings join customer in _context.Customers on buildings.CustomerId equals customer.Id select buildings).Take(2);
-
-
-
-            return Buildings.Distinct().ToList();
+            IEnumerable<Buildings> bulding =
+              (from bul in _context.Buildings
+               join customer in _context.Customers on bul.Id equals customer.Id
+               where
+                bul.CreatedAt < customer.CreatedAt || bul.CreatedAt > customer.CreatedAt
+               select bul).Take(3);
+            return bulding.Distinct().ToList();
 
         }
 
