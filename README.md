@@ -1,4 +1,6 @@
-<h1 align="center"> Rocket Elevators REST API </h1>
+<h1 align="center"> Rocket Elevators REST API: Week 11: Understanding the .NET Framework </h1>
+
+Adding 5 new endpoints to serve the costumer portal requests.
 
 REST API using C # and .NET Core allow requesting Rocket Elevators systems to access and manipulate textual representations of web resources through a set of stateless, predefined uniform operations.
 
@@ -17,6 +19,16 @@ Below are described the REST endpoints available that you can use to connect Roc
 ## Link to Postman collection
 
 **[Postman collection](https://www.getpostman.com/collections/a5e758697de9317cee05)**
+
+## Week 11 new endpoints (costumer portal):
+
+```ssh
+https://restapisaadeddine.azurewebsites.net/api/Batteries/{email}/costumer
+https://restapisaadeddine.azurewebsites.net/api/Columns/{email}/column
+https://restapisaadeddine.azurewebsites.net/api/Elevators/{email}/elevator
+https://restapisaadeddine.azurewebsites.net/api/BuildingsOff/{email}/buildings
+https://restapisaadeddine.azurewebsites.net/api/Adresses/{email}/address
+```
 
 <hr>
 How to add the postman collection
