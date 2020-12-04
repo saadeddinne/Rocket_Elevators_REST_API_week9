@@ -41,7 +41,7 @@ namespace RocketApi.Controllers
 
             return elevators;
         }
-        // Get columns for specific Customers
+        // Get Elevators for specific Customers
 
         [HttpGet("{email}/elevator")]
         public IEnumerable<Elevators> ElevatorsCostumer([FromRoute] string email)

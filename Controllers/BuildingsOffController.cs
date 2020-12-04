@@ -45,6 +45,27 @@ namespace RocketApi.Controllers
             return Building.Distinct().ToList();
 
         }
+        // Get columns for specific Customers
+
+        [HttpGet("{email}/buildings")]
+        public IEnumerable<Buildings> BuildingsCostumer([FromRoute] string email)
+        {
+
+
+            var cost = _context.Customers.Where(c => c.CompanyContactEmail.Equals(email));
+            Customers costume = cost.FirstOrDefault();
+            // var costx = costume.Id;
+
+            IEnumerable<Buildings> Buildings = (from buildings in _context.Buildings
+                                                join customer in _context.Customers on buildings.CustomerId equals customer.Id
+                                                where customer.Id == costume.Id
+                                                select buildings);
+
+
+
+            return Buildings.Distinct().ToList();
+
+        }
 
         private bool BuildingsExists(long id)
         {
