@@ -61,20 +61,19 @@ namespace RocketApi.Controllers
 
         // Get Batteries for specific Customers
 
-        [HttpGet("{getbattery}")]
-        public IEnumerable<Batteries> GetCustomersAuth([FromRoute] string email)
+        [HttpGet("{email}/costumer")]
+        public IEnumerable<Batteries> BatteryCostumer([FromRoute] string email)
         {
 
 
             var cost = _context.Customers.Where(c => c.CompanyContactEmail.Equals(email));
             var costume = cost.FirstOrDefault();
-            long costx = costume.Id;
+            // var costx = costume.Id;
 
             IEnumerable<Batteries> Bbatteries = from batteries in _context.Batteries
                                                 join buildings in _context.Buildings on batteries.Id equals buildings.Id
                                                 join costumer in _context.Customers on buildings.Id equals
                                                 costumer.Id
-                                                where costumer.Id == costx
                                                 select batteries;
 
 
