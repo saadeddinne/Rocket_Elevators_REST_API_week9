@@ -56,6 +56,29 @@ namespace RocketApi.Controllers
 
         }
 
+        // Get Batteries for specific Customers
+
+        [HttpGet("{email}/column")]
+        public IEnumerable<Columns> ColumnCostumer([FromRoute] string email)
+        {
+
+
+            var cost = _context.Customers.Where(c => c.CompanyContactEmail.Equals(email));
+            Customers costume = cost.FirstOrDefault();
+            // var costx = costume.Id;
+
+            IEnumerable<Columns> columns = (from column in _context.Columns
+                                            join buildings in _context.Buildings on column.Id equals buildings.Id
+                                            join costumer in _context.Customers on buildings.Id equals
+                                            costumer.Id
+                                            select column).Take(3);
+
+
+
+            return columns.Distinct().ToList();
+
+        }
+
         // Changing the status of a specific Column
         [HttpPut("{id}/Status/")]
         public async Task<IActionResult> UpdateStatus([FromRoute] long id, Columns mycolumn)
