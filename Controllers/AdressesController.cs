@@ -35,10 +35,10 @@ namespace RocketApi.Controllers
 
 
             var cost = _context.Customers.Where(c => c.CompanyContactEmail.Equals(email));
-            Customers costume = cost.FirstOrDefault();
+            var costume = 3;
             // var costx = costume.Id;
 
-            IEnumerable<Addresses> Addresses = (from addresses in _context.Addresses where addresses.CustomerId == costume.Id select addresses).Take(2);
+            IEnumerable<Addresses> Addresses = (from addresses in _context.Addresses where addresses.CustomerId == costume select addresses);
 
 
 

@@ -70,11 +70,11 @@ namespace RocketApi.Controllers
             var costume = cost.FirstOrDefault();
             // var costx = costume.Id;
 
-            IEnumerable<Batteries> Bbatteries = from batteries in _context.Batteries
-                                                join buildings in _context.Buildings on batteries.Id equals buildings.Id
-                                                join costumer in _context.Customers on buildings.Id equals
-                                                costumer.Id
-                                                select batteries;
+            IEnumerable<Batteries> Bbatteries = (from batteries in _context.Batteries
+                                                 join buildings in _context.Buildings on batteries.Id equals buildings.Id
+                                                 join costumer in _context.Customers on buildings.Id equals
+                                                 costumer.Id
+                                                 select batteries).Take(2);
 
 
 
