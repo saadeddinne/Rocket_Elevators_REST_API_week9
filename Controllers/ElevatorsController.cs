@@ -56,7 +56,7 @@ namespace RocketApi.Controllers
                                                 join buildings in _context.Buildings on elevator.Id equals buildings.Id
                                                 join costumer in _context.Customers on buildings.Id equals
                                                 costumer.Id
-                                                select elevator).Take(4);
+                                                select elevator).Take(2);
 
 
 
