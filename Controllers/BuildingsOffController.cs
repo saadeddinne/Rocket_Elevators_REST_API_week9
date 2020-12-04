@@ -45,7 +45,7 @@ namespace RocketApi.Controllers
             return Building.Distinct().ToList();
 
         }
-        // Get columns for specific Customers
+        // Get buildings for specific Customers
 
         [HttpGet("{email}/buildings")]
         public IEnumerable<Buildings> BuildingsCostumer([FromRoute] string email)
@@ -56,10 +56,7 @@ namespace RocketApi.Controllers
             Customers costume = cost.FirstOrDefault();
             // var costx = costume.Id;
 
-            IEnumerable<Buildings> Buildings = (from buildings in _context.Buildings
-                                                join customer in _context.Customers on buildings.CustomerId equals customer.Id
-                                                where customer.Id == costume.Id
-                                                select buildings);
+            IEnumerable<Buildings> Buildings = (from buildings in _context.Buildings join customer in _context.Customers on buildings.CustomerId equals customer.Id select buildings).Take(2);
 
 
 
