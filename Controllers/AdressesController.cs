@@ -29,7 +29,7 @@ namespace RocketApi.Controllers
 
         // Get buildings adresses for specific Customers
 
-        [HttpGet("{email}/buildings")]
+        [HttpGet("{email}/address")]
         public IEnumerable<Addresses> BuildingsAddressesCostumer([FromRoute] string email)
         {
 
