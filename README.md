@@ -18,7 +18,7 @@ Below are described the REST endpoints available that you can use to connect Roc
 
 ## Link to Postman collection
 
-**[Postman collection](https://www.getpostman.com/collections/72a736453f72e3100c47)**
+**[Postman collection](https://www.getpostman.com/collections/399409a80ad03f3b9447)**
 
 ## Week 11 new endpoints (costumer portal):
 

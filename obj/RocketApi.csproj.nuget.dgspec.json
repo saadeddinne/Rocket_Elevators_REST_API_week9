@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CodeBoxx\\Odyssey\\Week 9\\Rocket_Elevators_REST_API-saad\\RocketApi.csproj": {}
+    "d:\\CodeBoxx\\Odyssey\\Week 9\\Rocket_Elevators_REST_API-saad\\RocketApi.csproj": {}
   },
   "projects": {
-    "D:\\CodeBoxx\\Odyssey\\Week 9\\Rocket_Elevators_REST_API-saad\\RocketApi.csproj": {
+    "d:\\CodeBoxx\\Odyssey\\Week 9\\Rocket_Elevators_REST_API-saad\\RocketApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CodeBoxx\\Odyssey\\Week 9\\Rocket_Elevators_REST_API-saad\\RocketApi.csproj",
+        "projectUniqueName": "d:\\CodeBoxx\\Odyssey\\Week 9\\Rocket_Elevators_REST_API-saad\\RocketApi.csproj",
         "projectName": "RocketApi",
-        "projectPath": "D:\\CodeBoxx\\Odyssey\\Week 9\\Rocket_Elevators_REST_API-saad\\RocketApi.csproj",
+        "projectPath": "d:\\CodeBoxx\\Odyssey\\Week 9\\Rocket_Elevators_REST_API-saad\\RocketApi.csproj",
         "packagesPath": "C:\\Users\\saade\\.nuget\\packages\\",
-        "outputPath": "D:\\CodeBoxx\\Odyssey\\Week 9\\Rocket_Elevators_REST_API-saad\\obj\\",
+        "outputPath": "d:\\CodeBoxx\\Odyssey\\Week 9\\Rocket_Elevators_REST_API-saad\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\saade\\AppData\\Roaming\\NuGet\\NuGet.Config",
