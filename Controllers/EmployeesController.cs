@@ -52,7 +52,7 @@ namespace RocketApi.Controllers
                 return NotFound();
             }
 
-            return email;
+            return Ok();
         }
 
         // PUT: api/Employees/5
