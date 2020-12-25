@@ -2,6 +2,8 @@
 
 <h4> Week 14: Mobile developpement   </h4>
 
+## Link to Postman collection
+
 Total endpoints : 36
 Endpoints: **[Postman Collection](https://www.getpostman.com/collections/a1239db7a8ef7c477fe6)**
 
@@ -33,7 +35,7 @@ Below are described the REST endpoints available that you can use to connect Roc
 
 ## Link to Postman collection
 
-**[Postman collection](https://www.getpostman.com/collections/399409a80ad03f3b9447)**
+**[Postman collection](https://www.getpostman.com/collections/a1239db7a8ef7c477fe6)**
 
 ## Week 11 new endpoints (costumer portal):
 
