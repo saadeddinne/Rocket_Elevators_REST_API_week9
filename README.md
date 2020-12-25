@@ -1,4 +1,19 @@
-<h1 align="center"> Rocket Elevators REST API: Week 11: Understanding the .NET Framework </h1>
+<h1 align="center"> Rocket Elevators REST API:   </h1>
+
+<h4> Week 14: Mobile developpement   </h4>
+
+Total endpoints : 36
+Endpoints: **[Postman Collection](https://www.getpostman.com/collections/a1239db7a8ef7c477fe6)**
+
+<hr>
+
+Adding endpoints:
+
+- to check the employee email
+- to collect the non operational elevators
+- Change the elevator's status (without body for the query)
+
+previous work:
 
 Adding 5 new endpoints to serve the costumer portal requests.
 

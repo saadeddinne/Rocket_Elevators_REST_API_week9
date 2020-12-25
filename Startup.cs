@@ -33,18 +33,19 @@ namespace RocketApi
         public void ConfigureServices(IServiceCollection services)
         {
 
+
             try
             {
                 Console.WriteLine("Bloc config");
                 services.AddControllers().AddNewtonsoftJson();
                 services.AddDbContext<RocketContext>(opt =>
                 opt.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
-             }       
+            }
 
-              catch (Exception ex)
-              {
-                  Console.WriteLine("Erreur BD", ex);
-              }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur BD", ex);
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
